@@ -4,7 +4,7 @@ HyperbolicTools
 A set of tools for Modo to generate hyperbolic planes
 
 Includes:
-
+---------------
 Vector3.py, a vector class
 
 Verlet.py, a verlet-integration based cloth simulation (based on the specification by T. Jakobsen)
