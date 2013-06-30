@@ -1,5 +1,12 @@
 #python
 
+'''
+HyperTools.py by Lito Nicolai
+
+For questions or bug reports, please contact lito.nicolai@gmail.com
+'''
+
+
 ###### Classes and Constants ######
 
 from math import sqrt
@@ -26,6 +33,16 @@ class Vector3(tuple): #Vector3 class for tuples
 		
 	def pSum(self): #piecewise sum
 		return self.x + self.y +self.z
+	
+	def cross(self, other)
+		return Vector3( self.y * other.z - self.z * other.y, 
+						self.z * other.x - self.z * other.z, 
+						self.x * other.y - self.y * other.x)
+	def magnitude(self):
+		return sqrt( self.x**self.x + self.y*self.y + self.z*self.z )
+		
+	def normalize(self):
+		return self * 1.0 / magnitude
 
 def distance(vec1, vec2):
 		return sqrt( (vec1.x - vec2.x)**2 + (vec1.y - vec2.y)**2 + (vec1.z - vec2.z)**2 )
@@ -59,16 +76,18 @@ del vertList #don't need this anymore, vertices are always referred to in order 
 
 m_particles = []
 
+if eval(lx.eval(user.value Hypertools.previous_positions ? )) is None:
+	rebuild_poslist = True
+
 for index in range(0, num_particles): #converts vertPositions into a usable list of Particle classes.
 	temp = Particle( 
 						Vector3(
 									vertPositions[index]#current_position
 								), #end Vector3
 						Vector3( 				
-									#try: i am trying to be clever
+								
 									
-									#except:	
-										vertPositions[index]#previous_position
+										vertPositions[index] # create a new base state where nothing's moving
 								), #end Vector3
 						Vector3( 
 									null 				#forces (begin null)
@@ -90,7 +109,7 @@ fixedRestLength = 0.9
 
 edgeListTemp = list( lx.evalN("query layerservice edges ? all") ) # returns a list of edges (used as constraints) as tuples of form (v1, v2). !!! this might only work on the first layer!
 
-edgeList = [eval(x) for x in edgeListTemp] #annoying but necessary, all modo output is strings. This evaluates the contents of the strings into the tuples they really are.
+edgeList = [eval(x) for x in edgeListTemp] #annoying but necessary, evaluates the contents of the strings into the tuples they really are.
 
 del edgeListTemp
 
@@ -104,6 +123,9 @@ for index in range(num_constraints): #same as above, converts edgeList to a list
 	m_constraints.append(temp)
 					 
 del edgeList
+
+###### Pre-build list of Verts for bending stiffness ######
+
 
 
 ###### The Verlet model ######
@@ -128,8 +150,8 @@ def averagedist():
 	
 	
 	
-restlength = averagedist() #for this case, but not for verlet in general
-restlength2 = restlength * restlength # restlength squared!
+restlength = averagedist()				# for this case, but not for verlet in general.
+restlength2 = restlength * restlength   # Can use m_constraints.restlength if normal behavior is required
 
 def AccumulateForces():
 	pass #implement if gravity is ever needed
@@ -141,15 +163,17 @@ def SatisfyConstraints():
 			x1 = m_particles[c.particleA].m_x #getting the position of the first vertex in a constraint
 			x2 = m_particles[c.particleB].m_x
 			delta = x2 - x1 # a Vector3
-			delta *= restlength2/ (Vector3.pSum(delta*delta) + restlength2) - 0.5 #first-order taylor expansion of sqrt operator
+			delta *= restlength2/ (Vector3.pSum(delta*delta) + restlength2) - 0.5 #first-order taylor expansion of sqrt operator (for speed)
 			#need to push the values back into the particle
 			m_particles[c.particleA].m_x -= delta * const
 			m_particles[c.particleB].m_x += delta * const
 
+
+
 def TimeStep():
-	AccumulateForces()
+	#AccumulateForces()
 	SatisfyConstraints()
-	#SatisfyCollisions()
+	
 	
 
 num_steps = 30
