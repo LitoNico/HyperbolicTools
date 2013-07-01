@@ -1,5 +1,5 @@
 bendList = []
-stiffness_constant = 2
+stiffness_constant = 0.01 #smaller is less stiff
 
 
 for i in m_constraints:
@@ -13,10 +13,9 @@ for i in m_constraints:
 	bendList.append( [edge_verts, addl_two] )
 
 
-normalList = [] #wrong wrong wrong
-for index in num_verts:
-	normalList.append = eval(lx.eval('query layerservice vert.normal ? ' + str(index) ))
-	
+
+stiffness_vertnormals = cross( #the 
+
 def precompute_stiffness
 	for i in enumerate(bendList):
 		try:
@@ -29,14 +28,17 @@ def precompute_stiffness
 		# build coefficients
 		stiffness_alpha = h_b / (h_a + h_b)
 		#Since the satisfyConstraints function will cause edges to converge to 
-		#the same length, all faces will converge to equilateral triangles,
-		#and 
+		#the same length, all faces will converge to equilateral triangles
 		
-		c-d_edge_length = avg_len #distance(c,d)
+		c-d_edgelength = avg_len #distance(c,d)
 		
-		stiffness_lambda = (2.0/3.0) * ( (h_a + h_b) / (h_a*h_b)**2 ) * stiffness_constant * c-d_edge_length
+		stiffness_lambda = (2.0/3.0) * ( (h_a + h_b) / (h_a*h_b)**2 ) * stiffness_constant * c-d_edgelength
 	
 
 
 def runtime_stiffness
 	r = 
+	
+	
+	for i in enumerate(vertList):
+		m_particles[i].m_x += stiffnessList[i]
