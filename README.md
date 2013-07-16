@@ -4,7 +4,7 @@ HyperbolicTools
 A set of tools for Modo to generate hyperbolic planes.
 
 Includes:
-_______________
+---------------
 
 Two macros,  
 **alteredge_macro.lxm** and **fulledge_macro.lxm**  
