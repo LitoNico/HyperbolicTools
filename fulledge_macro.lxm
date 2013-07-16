@@ -1,0 +1,11 @@
+#LXMacro#
+
+#select full row of edges
+select.convert vertex
+select.editSet prev_verts add
+select.convert edge
+
+tool.set edge.extend on
+tool.attr edge.extend offZ -0.1
+tool.set edge.extend off 0
+select.drop edge

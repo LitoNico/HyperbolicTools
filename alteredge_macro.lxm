@@ -1,0 +1,10 @@
+#LXMacro#
+
+#select alternating edges
+@edgedivide3.pl
+select.convert vertex
+select.contract
+
+select.useSet prev_verts select
+poly.split
+select.drop
