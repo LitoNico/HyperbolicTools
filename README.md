@@ -6,7 +6,7 @@ A set of tools for Modo to generate hyperbolic planes.
 Includes:
 _______________
 
-Two macros, __alteredge_macro.lxm__ and *fulledge_macro.lxm*  
+Two macros, __alteredge_macro.lxm__ and **fulledge_macro.lxm**  
 That make building the geometry of the hyperbolic surface a little easier
 
 and
