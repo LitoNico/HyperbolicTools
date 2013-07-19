@@ -18,5 +18,8 @@ an implementation of the constraint-solving portion of a verlet-integration base
 This script implements pieces of "Advanced Character Physics" (T. Jakobsen, 2003)and "Simple Linear Bending Stiffness in Particle Systems" (Volino and Magnenat-Thalmann, 2006)
 
 
+Eventually, it will include **config files** for Modo to make it easier to use.
+
+
 
 
